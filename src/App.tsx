@@ -15,7 +15,6 @@ import {
   Sparkles
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import logo from "./assets/logo.png";
 
 // --- Components ---
 
@@ -68,7 +67,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
         <div className="flex items-center gap-3 group cursor-pointer">
           <div className="w-12 h-12 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-            <img src={logo} alt="LET US WED Logo" className="w-full h-full object-contain" />
+            <img src="/logo.png" alt="LET US WED Logo" className="w-full h-full object-contain" />
           </div>
           <span className={`text-2xl font-serif tracking-[0.3em] ${isScrolled ? "text-primary" : "text-gray-900"}`}>LET US WED</span>
         </div>
@@ -467,12 +466,12 @@ export default function App() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
             {[
-              { src: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=1000", title: "Vintage Summer Engagement", date: "June 2025" },
-              { src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1000", title: "Elegant City Wedding", date: "September 2025" },
-              { src: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=1000", title: "Romantic Lake Escape", date: "August 2025" },
-              { src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1000", title: "Classic Cathedral Vows", date: "October 2025" },
-              { src: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1000", title: "Modern Rooftop Soirée", date: "July 2025" },
-              { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1000", title: "Intimate Garden Vows", date: "May 2025" }
+              { src: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=800", title: "Vintage Summer Engagement", date: "June 2025" },
+              { src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800", title: "Elegant City Wedding", date: "September 2025" },
+              { src: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800", title: "Romantic Lake Escape", date: "August 2025" },
+              { src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800", title: "Classic Cathedral Vows", date: "October 2025" },
+              { src: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800", title: "Modern Rooftop Soirée", date: "July 2025" },
+              { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800", title: "Intimate Garden Vows", date: "May 2025" }
             ].map((item, idx) => (
               <motion.div 
                 key={idx}
@@ -608,7 +607,7 @@ export default function App() {
       <footer className="py-32 px-8 bg-white border-t border-gray-50 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col items-center">
           <div className="w-24 h-24 mb-12 flex items-center justify-center transition-transform duration-500 hover:scale-110">
-            <img src={logo} alt="LET US WED Logo" className="w-full h-full object-contain" />
+            <img src="/logo.png" alt="LET US WED Logo" className="w-full h-full object-contain" />
           </div>
           <h2 className="text-4xl font-serif mb-4 tracking-[0.4em]">LET US WED</h2>
           <p className="text-gray-400 italic font-serif mb-16 text-lg">"Where Your Forever Begins, Flawlessly Designed."</p>
