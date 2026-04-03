@@ -65,14 +65,14 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? "bg-white/80 backdrop-blur-lg shadow-sm py-3" : "bg-transparent py-8"}`}>
       <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
-        <div className="flex items-center gap-3 group cursor-pointer">
-          <div className="w-12 h-12 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+        <div className="flex items-center gap-2 md:gap-4 group cursor-pointer">
+          <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
             <img src="/logo.png" alt="LET US WED Logo" className="w-full h-full object-contain" />
           </div>
-          <span className={`text-2xl font-serif tracking-[0.3em] ${isScrolled ? "text-primary" : "text-gray-900"}`}>LET US WED</span>
+          <span className={`text-base md:text-2xl font-serif tracking-[0.15em] md:tracking-[0.4em] ${isScrolled ? "text-primary" : "text-gray-900"}`}>LET US WED</span>
         </div>
         
-        <div className="hidden md:flex items-center gap-10 text-[10px] uppercase tracking-[0.4em] font-semibold">
+        <div className="hidden lg:flex items-center gap-10 text-[10px] uppercase tracking-[0.4em] font-semibold">
           {["Home", "Philosophy", "Services", "Experience", "Contact"].map((item) => (
             <a 
               key={item} 
@@ -85,7 +85,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <button className="md:hidden text-gray-900" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button className="lg:hidden text-gray-900" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -96,7 +96,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl shadow-2xl overflow-hidden md:hidden"
+            className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl shadow-2xl overflow-hidden lg:hidden"
           >
             <div className="flex flex-col items-center gap-8 py-12">
               {["Home", "Philosophy", "Services", "Experience", "Contact"].map((item) => (
@@ -204,9 +204,9 @@ export default function App() {
         {/* Triple Image Background */}
         <div className="absolute inset-0 z-0 flex">
           {[
-            "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=100&w=2000", // Couple Left
-            "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=100&w=2000", // Venue Middle
-            "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=100&w=2000"  // Couple Right
+            "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=100&w=1200", // Couple Left
+            "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=100&w=1200", // Venue Middle
+            "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=100&w=1200"  // Couple Right
           ].map((src, i) => (
             <motion.div 
               key={i}
