@@ -470,7 +470,7 @@ export default function App() {
               { src: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=1000", title: "Vintage Summer Engagement", date: "June 2025" },
               { src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1000", title: "Elegant City Wedding", date: "September 2025" },
               { src: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=1000", title: "Romantic Lake Escape", date: "August 2025" },
-              { src: "https://images.unsplash.com/photo-1465495910483-0d6749ee9973?auto=format&fit=crop&q=80&w=1000", title: "Classic Cathedral Vows", date: "October 2025" },
+              { src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1000", title: "Classic Cathedral Vows", date: "October 2025" },
               { src: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1000", title: "Modern Rooftop Soirée", date: "July 2025" },
               { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1000", title: "Intimate Garden Vows", date: "May 2025" }
             ].map((item, idx) => (
