@@ -15,6 +15,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import logo from "./assets/logo.png";
 
 // --- Components ---
 
@@ -66,8 +67,8 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? "bg-white/80 backdrop-blur-lg shadow-sm py-3" : "bg-transparent py-8"}`}>
       <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
         <div className="flex items-center gap-3 group cursor-pointer">
-          <div className="w-10 h-10 bg-primary flex items-center justify-center rounded-sm rotate-45 group-hover:rotate-0 transition-transform duration-500">
-            <Heart className="text-white -rotate-45 group-hover:rotate-0 transition-transform duration-500" size={20} fill="currentColor" />
+          <div className="w-12 h-12 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+            <img src={logo} alt="LET US WED Logo" className="w-full h-full object-contain" />
           </div>
           <span className={`text-2xl font-serif tracking-[0.3em] ${isScrolled ? "text-primary" : "text-gray-900"}`}>LET US WED</span>
         </div>
@@ -606,8 +607,8 @@ export default function App() {
       {/* Footer */}
       <footer className="py-32 px-8 bg-white border-t border-gray-50 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col items-center">
-          <div className="w-16 h-16 bg-primary flex items-center justify-center rounded-sm rotate-45 mb-12 shadow-xl">
-            <Heart className="text-white -rotate-45" size={32} fill="currentColor" />
+          <div className="w-24 h-24 mb-12 flex items-center justify-center transition-transform duration-500 hover:scale-110">
+            <img src={logo} alt="LET US WED Logo" className="w-full h-full object-contain" />
           </div>
           <h2 className="text-4xl font-serif mb-4 tracking-[0.4em]">LET US WED</h2>
           <p className="text-gray-400 italic font-serif mb-16 text-lg">"Where Your Forever Begins, Flawlessly Designed."</p>
