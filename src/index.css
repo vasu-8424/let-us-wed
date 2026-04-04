@@ -5,7 +5,7 @@
   --font-sans: "Inter", sans-serif;
   --color-primary: #c62828;
   --color-secondary: #fce4ec;
-  --color-beige: #f9f5f0;
+  --color-beige: #f4ede4;
   --color-gold: #d4af37;
 }
 
@@ -22,13 +22,13 @@
 }
 
 .marble-bg {
-  background-color: #f9f5f0;
+  background-color: #f4ede4;
   background-image: url("https://www.transparenttextures.com/patterns/marble-similar.png");
 }
 
 .floral-overlay {
   background-image: url("https://www.transparenttextures.com/patterns/floral-paper.png");
-  opacity: 0.03;
+  opacity: 0.08;
   pointer-events: none;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .framed-image {
-  @apply relative p-4 bg-white shadow-2xl border border-gray-100 transition-all duration-700;
+  @apply relative p-4 bg-white/40 backdrop-blur-sm shadow-2xl border border-white/50 transition-all duration-700;
 }
 
 .framed-image::after {

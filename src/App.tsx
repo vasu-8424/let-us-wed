@@ -12,7 +12,12 @@ import {
   ChevronRight,
   Menu,
   X,
-  Sparkles
+  Sparkles,
+  ClipboardList,
+  Target,
+  Calendar,
+  CheckCircle,
+  FileText
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
@@ -43,9 +48,13 @@ const FloatingFlowers = () => {
             ease: "linear",
             delay: Math.random() * 20
           }}
-          className="absolute text-primary/10"
+          className="absolute"
         >
-          <Heart size={20 + Math.random() * 20} fill="currentColor" />
+          <img 
+            src="/LUW_Final_Logomark.png" 
+            alt="Logo" 
+            className="w-8 h-8 md:w-12 md:h-12 object-contain grayscale opacity-20"
+          />
         </motion.div>
       ))}
     </div>
@@ -63,7 +72,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? "bg-white/80 backdrop-blur-lg shadow-sm py-3" : "bg-transparent py-8"}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? "bg-beige/80 backdrop-blur-lg shadow-sm py-3" : "bg-transparent py-8"}`}>
       <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
         <div className="flex items-center gap-2 md:gap-4 group cursor-pointer">
           <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
@@ -73,14 +82,20 @@ const Navbar = () => {
         </div>
         
         <div className="hidden lg:flex items-center gap-10 text-[10px] uppercase tracking-[0.4em] font-semibold">
-          {["Home", "Philosophy", "Services", "Experience", "Contact"].map((item) => (
+          {[
+            { name: "Home", href: "#home" },
+            { name: "About Us", href: "#philosophy" },
+            { name: "Services", href: "#services" },
+            { name: "How It Works", href: "#experience" },
+            { name: "Contact", href: "#contact" }
+          ].map((item) => (
             <a 
-              key={item} 
-              href={`#${item.toLowerCase()}`} 
+              key={item.name} 
+              href={item.href} 
               className="relative group overflow-hidden py-1"
             >
-              <span className="block group-hover:-translate-y-full transition-transform duration-500">{item}</span>
-              <span className="absolute top-full left-0 block text-primary transition-transform duration-500 group-hover:-translate-y-full">{item}</span>
+              <span className="block group-hover:-translate-y-full transition-transform duration-500">{item.name}</span>
+              <span className="absolute top-full left-0 block text-primary transition-transform duration-500 group-hover:-translate-y-full">{item.name}</span>
             </a>
           ))}
         </div>
@@ -96,17 +111,23 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl shadow-2xl overflow-hidden lg:hidden"
+            className="absolute top-full left-0 w-full bg-beige/95 backdrop-blur-xl shadow-2xl overflow-hidden lg:hidden"
           >
             <div className="flex flex-col items-center gap-8 py-12">
-              {["Home", "Philosophy", "Services", "Experience", "Contact"].map((item) => (
+              {[
+                { name: "Home", href: "#home" },
+                { name: "About Us", href: "#philosophy" },
+                { name: "Services", href: "#services" },
+                { name: "How It Works", href: "#experience" },
+                { name: "Contact", href: "#contact" }
+              ].map((item) => (
                 <a 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`} 
+                  key={item.name} 
+                  href={item.href} 
                   onClick={() => setIsMenuOpen(false)} 
                   className="text-2xl font-serif tracking-widest hover:text-primary transition-colors"
                 >
-                  {item}
+                  {item.name}
                 </a>
               ))}
             </div>
@@ -231,12 +252,27 @@ export default function App() {
             transition={{ duration: 1.5, ease: "easeOut" }}
             className="mb-10"
           >
-            <div className="w-20 h-20 bg-primary mx-auto flex items-center justify-center rounded-sm rotate-45 shadow-2xl relative">
-              <Heart className="text-white -rotate-45" size={40} fill="currentColor" />
+            <div className="w-32 h-32 md:w-48 md:h-48 mx-auto flex items-center justify-center relative">
+              <motion.img 
+                src="/LUW_Final_Logomark.png" 
+                alt="LET US WED Symbol" 
+                className="w-full h-full object-contain relative z-10"
+                animate={{ 
+                  y: [0, -15, 0],
+                  rotate: [0, 5, -5, 0] 
+                }}
+                transition={{ 
+                  y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                  rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+                }}
+              />
               <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-[-12px] border border-primary/20 rounded-full"
+                animate={{ rotate: 360, scale: [1, 1.15, 1] }}
+                transition={{ 
+                  rotate: { duration: 25, repeat: Infinity, ease: "linear" }, 
+                  scale: { duration: 5, repeat: Infinity, ease: "easeInOut" } 
+                }}
+                className="absolute inset-[-30px] border-2 border-primary/5 rounded-full"
               />
             </div>
           </motion.div>
@@ -256,8 +292,17 @@ export default function App() {
             transition={{ delay: 0.5, duration: 1.2 }}
             className="text-5xl md:text-8xl lg:text-9xl font-serif text-gray-900 mb-12 tracking-tight leading-[0.95]"
           >
-            Turning life's beautiful moments into lasting memories
+            Your Big Day Deserves the Right Decisions
           </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0, duration: 1 }}
+            className="text-xl md:text-2xl text-gray-600 font-light mb-12 max-w-3xl mx-auto leading-relaxed"
+          >
+            From dream venues to perfect vendors — we help you choose what truly fits your wedding story.
+          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -270,7 +315,7 @@ export default function App() {
               whileHover={{ letterSpacing: "0.6em" }}
               className="text-[11px] uppercase tracking-[0.5em] font-bold text-gray-900 border-b border-gray-900/20 pb-3 hover:border-primary transition-all duration-500"
             >
-              Reserve Your Date
+              Book Consultation
             </motion.a>
           </motion.div>
         </div>
@@ -297,9 +342,9 @@ export default function App() {
           >
             <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=100&w=2000" 
+                src="/gallery-10.png" 
                 alt="Philosophy" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-1000"
+                className="w-full h-full object-cover hover:scale-105 transition-all duration-1000"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -309,65 +354,63 @@ export default function App() {
           </motion.div>
 
           <div className="relative">
-            <SectionHeading title="Our Philosophy" subtitle="The Art of Celebration" centered={false} />
+            <SectionHeading title="About Us" subtitle="Who We Are" centered={false} />
             <motion.p 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 1 }}
-              className="text-4xl md:text-5xl font-serif text-gray-800 leading-tight italic mb-12"
+              className="text-2xl md:text-3xl font-serif text-gray-800 leading-tight mb-8"
             >
-              "We don’t plan weddings. We curate experiences that become heirlooms."
+              Let Us Wed is your trusted wedding consultation partner, dedicated to simplifying your big day. 
             </motion.p>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="text-lg text-gray-500 font-light leading-loose max-w-lg"
+              className="text-lg text-gray-500 font-light leading-loose max-w-lg mb-8"
             >
-              In a world of fleeting moments, we believe in the power of timelessness. Our approach is deeply personal, focusing on the intricate details that reflect your unique narrative.
+              We specialize in helping you discover the best venues and vendors that match your style, vision, and budget. We don’t manage weddings — we help you make the right choices.
             </motion.p>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-40 px-8 relative z-10 bg-white/30">
+      <section id="services" className="py-40 px-8 relative z-10 bg-beige/10">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading title="Bespoke Services" subtitle="Excellence in Every Detail" />
+          <SectionHeading title="Our Services" subtitle="Simplifying Your Journey" />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <p className="text-center text-xl text-gray-500 font-light mb-24 max-w-3xl mx-auto">
+            At Let Us Wed, we focus on simplifying your wedding planning journey through expert consultation and curated recommendations.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {[
               {
                 icon: MapPin,
-                title: "Venue Curation",
-                description: "Finding the perfect backdrop that resonates with your aesthetic and soul.",
-                points: ["Global Destination Scouting", "Site Inspections", "Contract Negotiation"]
+                title: "Venue Discovery",
+                description: "We understand your requirements and present venues that match your expectations, budget, and guest size.",
+                points: ["Requirement Analysis", "Budget-Friendly Options", "Guest Size Mapping"]
               },
               {
                 icon: Users,
-                title: "Vendor Concierge",
-                description: "Connecting you with the finest artisans, photographers, and creators.",
-                points: ["Portfolio Review", "Coordination", "Quality Assurance"]
+                title: "Vendor Recommendations",
+                description: "We connect you with multiple vendor options — photographers, decorators, caterers — so you can choose what fits best.",
+                points: ["Curated Photographers", "Expert Decorators", "Finest Caterers"]
               },
               {
-                icon: Palette,
-                title: "Design & Decor",
-                description: "Visual storytelling through textures, florals, and lighting.",
-                points: ["Moodboards", "Floral Design", "Custom Installations"]
+                icon: Sparkles,
+                title: "Wedding Consultation",
+                description: "We help you plan smarter by guiding you through decisions, comparisons, and priorities.",
+                points: ["Decision Support", "Priority Planning", "Comparison Analysis"]
               },
               {
-                icon: Utensils,
-                title: "Gourmet Catering",
-                description: "A culinary journey designed to delight the senses and celebrate heritage.",
-                points: ["Menu Design", "Tastings", "Wine Pairing"]
-              },
-              {
-                icon: Camera,
-                title: "Wedding Storytelling",
-                description: "Capturing the raw emotions and fleeting moments that define you.",
-                points: ["Photography", "Cinematography", "Live Streaming"]
+                icon: Phone,
+                title: "Booking Assistance",
+                description: "We coordinate with venues and vendors to check availability and help you move forward smoothly.",
+                points: ["Availability Checks", "Coordination", "Smooth Process"]
               }
             ].map((service, idx) => (
               <ServiceCard 
@@ -401,77 +444,169 @@ export default function App() {
         </div>
       </section>
 
-      {/* Experience Timeline */}
-      <section id="experience" className="py-40 px-8 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <SectionHeading title="The Journey" subtitle="A Seamless Orchestration" />
-          
-          <div className="mt-32 space-y-24 relative">
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-primary/10 hidden md:block" />
-            
-            {[
-              {
-                step: "01",
-                title: "Share Your Vision",
-                description: "We begin with a deep dive into your dreams and the essence of your relationship."
-              },
-              {
-                step: "02",
-                title: "Thoughtful Curation",
-                description: "Receive a selection of venues and vendors that align perfectly with your vision."
-              },
-              {
-                step: "03",
-                title: "Personal Connects",
-                description: "We facilitate introductions, ensuring you feel confident in every choice."
-              },
-              {
-                step: "04",
-                title: "Choose with Ease",
-                description: "Finalize your selections with our expert guidance on logistics."
-              },
-              {
-                step: "05",
-                title: "Celebrate Beautifully",
-                description: "Step into your wedding day knowing every detail is orchestrated."
-              }
-            ].map((item, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className={`flex flex-col md:flex-row items-center gap-12 ${idx % 2 === 0 ? "md:flex-row-reverse" : ""}`}
-              >
-                <div className="flex-1 text-center md:text-left">
-                  <div className={`flex flex-col ${idx % 2 === 0 ? "md:items-end md:text-right" : "md:items-start md:text-left"}`}>
-                    <span className="text-6xl font-serif text-primary/10 mb-4 block">{item.step}</span>
-                    <h4 className="text-3xl font-serif mb-4 text-gray-900">{item.title}</h4>
-                    <p className="text-gray-500 font-light leading-relaxed max-w-sm">{item.description}</p>
-                  </div>
-                </div>
-                <div className="w-4 h-4 bg-primary rounded-full relative z-10 shadow-[0_0_20px_rgba(198,40,40,0.5)]" />
-                <div className="flex-1" />
-              </motion.div>
-            ))}
+      {/* How It Works Section */}
+      <section id="experience" className="py-40 px-8 relative z-10 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-32">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-5xl md:text-6xl font-serif text-gold mb-4 tracking-widest uppercase">How Let Us Wed Works</h2>
+              <div className="flex items-center justify-center gap-4">
+                <div className="h-px w-12 bg-gold/30" />
+                <span className="text-xl italic text-gray-500 font-serif">Simple. Structured. Stress-Free.</span>
+                <div className="h-px w-12 bg-gold/30" />
+              </div>
+            </motion.div>
           </div>
+          
+          <div className="relative">
+            {/* The "Winding Path" SVG */}
+            <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-full max-w-[800px] hidden md:block pointer-events-none opacity-20">
+              <svg width="100%" height="100%" viewBox="0 0 800 2000" fill="none" preserveAspectRatio="none">
+                <motion.path
+                  d="M400 0 C 600 200, 200 400, 400 600 C 600 800, 200 1000, 400 1200 C 600 1400, 200 1600, 400 1800 C 600 2000, 200 2200, 400 2400"
+                  stroke="#d4af37"
+                  strokeWidth="2"
+                  strokeDasharray="12 12"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 3, ease: "easeInOut" }}
+                />
+              </svg>
+            </div>
+
+            <div className="space-y-32 relative">
+              {[
+                {
+                  id: 1,
+                  title: "ENQUIRY",
+                  description: "Clients contact via Instagram, WhatsApp, or Call.",
+                  icon: Mail,
+                  align: "left"
+                },
+                {
+                  id: 2,
+                  title: "CONSULTATION",
+                  description: "We understand your vision & style.",
+                  icon: Users,
+                  align: "right"
+                },
+                {
+                  id: 3,
+                  title: "REQUIREMENTS",
+                  description: "Budget, Guest Count, Preferences.",
+                  icon: ClipboardList,
+                  align: "left"
+                },
+                {
+                  id: 4,
+                  title: "CURATED OPTIONS",
+                  description: "Tailored Venues & Vendors.",
+                  icon: Target,
+                  align: "right"
+                },
+                {
+                  id: 5,
+                  title: "AVAILABILITY CHECK",
+                  description: "Confirm Dates & Packages.",
+                  icon: Calendar,
+                  align: "left"
+                },
+                {
+                  id: 6,
+                  title: "SHORTLISTING",
+                  description: "Select the Best Matches.",
+                  icon: CheckCircle,
+                  align: "right"
+                },
+                {
+                  id: 7,
+                  title: "SITE VISITS",
+                  description: "Schedule & Assist Visits.",
+                  icon: MapPin,
+                  align: "left"
+                },
+                {
+                  id: 8,
+                  title: "BOOKING SUPPORT",
+                  description: "Negotiate & Finalize.",
+                  icon: FileText,
+                  align: "right"
+                },
+                {
+                  id: 9,
+                  title: "END-TO-END ASSISTANCE",
+                  description: "Smooth & Stress-Free Execution.",
+                  icon: Heart,
+                  align: "left"
+                }
+              ].map((item, idx) => (
+                <motion.div 
+                  key={item.id}
+                  initial={{ opacity: 0, x: item.align === "left" ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                  className={`flex items-center gap-8 md:gap-24 ${item.align === "right" ? "flex-row-reverse" : "flex-row"}`}
+                >
+                  <div className={`flex-1 flex flex-col ${item.align === "right" ? "items-start text-left" : "items-end text-right"}`}>
+                    <div className="flex items-center gap-4 mb-2">
+                      <span className="text-gold font-bold text-lg">{item.id}.</span>
+                      <h4 className="text-2xl md:text-3xl font-serif text-gray-900 tracking-wider">{item.title}</h4>
+                    </div>
+                    <p className="text-gray-500 font-light text-lg max-w-sm">{item.description}</p>
+                  </div>
+
+                  <div className="relative shrink-0">
+                    <div className="w-20 h-20 bg-white shadow-xl rounded-full flex items-center justify-center relative z-10 border border-gold/20 group-hover:scale-110 transition-transform cursor-default">
+                      <item.icon className="text-gold" size={32} />
+                    </div>
+                    {/* Circle Pulse Effect */}
+                    <motion.div 
+                      animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0, 0.2] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                      className="absolute inset-0 bg-gold rounded-full -z-0"
+                    />
+                  </div>
+
+                  <div className="flex-1 hidden md:block" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-40 text-center"
+          >
+            <div className="inline-block relative">
+              <h3 className="text-4xl md:text-6xl font-serif text-gold italic">From Enquiry to "I Do"—</h3>
+              <h3 className="text-4xl md:text-6xl font-serif text-gold italic ml-12">We Handle Everything</h3>
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-48 h-px bg-gold/30" />
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Portfolio Grid */}
-      <section className="py-40 px-8 relative z-10 bg-white/50">
+      <section className="py-40 px-8 relative z-10 bg-beige/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading title="Glimpses of Forever" subtitle="A Visual Narrative" />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
             {[
-              { src: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=800", title: "Vintage Summer Engagement", date: "June 2025" },
-              { src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800", title: "Elegant City Wedding", date: "September 2025" },
-              { src: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800", title: "Romantic Lake Escape", date: "August 2025" },
-              { src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800", title: "Classic Cathedral Vows", date: "October 2025" },
-              { src: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800", title: "Modern Rooftop Soirée", date: "July 2025" },
-              { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800", title: "Intimate Garden Vows", date: "May 2025" }
+              { src: "/gallery-4.png", title: "Glimpses of Perfection", date: "Recent Wedding" },
+              { src: "/gallery-3.png", title: "Exquisite Catering", date: "Grand Banquet" },
+              { src: "/gallery-2.png", title: "Royal Stage Design", date: "Reception Decor" },
+              { src: "/gallery-1.png", title: "Magnificent Mandap", date: "Traditional Vows" },
+              { src: "/gallery-5.png", title: "Floral Grandeur", date: "Stage Concept" },
+              { src: "/gallery-6.png", title: "Curated Excellence", date: "Unique Concept" }
             ].map((item, idx) => (
               <motion.div 
                 key={idx}
@@ -549,8 +684,9 @@ export default function App() {
               <div className="space-y-12">
                 {[
                   { icon: Phone, label: "Call Us", value: "7481081074" },
-                  { icon: Mail, label: "Email Us", value: "letuswed2026@gmail.com" },
-                  { icon: Instagram, label: "Follow Us", value: "@letuswed" }
+                  { icon: Mail, label: "Email Us", value: "letuswed@gmail.com" },
+                  { icon: Sparkles, label: "Timings", value: "9 AM – 9 PM (All Days)" },
+                  { icon: MapPin, label: "Visit Us", value: "No. 8-2-548/62, Rd Number 7, Opposite Meridian School, Vimal Nagar, Zahara Nagar, Banjara Hills, Hyderabad – 500034" }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-8 group cursor-pointer">
                     <div className="w-16 h-16 bg-white shadow-lg flex items-center justify-center rounded-sm group-hover:bg-primary group-hover:text-white transition-all duration-500">
@@ -570,13 +706,13 @@ export default function App() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="bg-white p-16 rounded-sm shadow-2xl border border-gray-50 relative"
+              className="bg-beige/40 backdrop-blur-md p-16 rounded-sm shadow-2xl border border-white/20 relative"
             >
               <div className="absolute top-0 right-0 p-8 opacity-5">
                 <Heart size={100} className="text-primary" fill="currentColor" />
               </div>
-              <form className="space-y-10 relative z-10" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <form className="space-y-8 relative z-10" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
                     <label className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Name</label>
                     <input type="text" className="w-full bg-transparent border-b border-gray-200 py-4 focus:border-primary outline-none transition-all font-serif text-lg" placeholder="Your Name" />
@@ -586,16 +722,43 @@ export default function App() {
                     <input type="tel" className="w-full bg-transparent border-b border-gray-200 py-4 focus:border-primary outline-none transition-all font-serif text-lg" placeholder="Your Phone" />
                   </div>
                 </div>
-                <div className="space-y-3">
-                  <label className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Event Date</label>
-                  <input type="date" className="w-full bg-transparent border-b border-gray-200 py-4 focus:border-primary outline-none transition-all font-serif text-lg" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-3">
+                    <label className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Event Type</label>
+                    <select className="w-full bg-transparent border-b border-gray-200 py-4 focus:border-primary outline-none transition-all font-serif text-lg">
+                      <option value="">Select Event Type</option>
+                      <option value="wedding">Wedding</option>
+                      <option value="engagement">Engagement</option>
+                      <option value="pre-wedding">Pre-Wedding</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div className="space-y-3">
+                    <label className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Event Date</label>
+                    <input type="date" className="w-full bg-transparent border-b border-gray-200 py-4 focus:border-primary outline-none transition-all font-serif text-lg" />
+                  </div>
                 </div>
                 <div className="space-y-3">
                   <label className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Requirements</label>
-                  <textarea rows={4} className="w-full bg-transparent border-b border-gray-200 py-4 focus:border-primary outline-none transition-all font-serif text-lg resize-none" placeholder="Tell us about your dream wedding..."></textarea>
+                  <div className="grid grid-cols-2 gap-4 mt-2">
+                    {["Venue", "Photographer", "Decorator", "Caterer"].map((req) => (
+                      <label key={req} className="flex items-center gap-3 cursor-pointer group">
+                        <input type="checkbox" className="w-5 h-5 border-2 border-gray-200 rounded-sm checked:bg-primary checked:border-primary transition-all cursor-pointer" />
+                        <span className="text-gray-600 group-hover:text-primary transition-colors">{req}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <label className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Tell us more about your requirements</label>
+                  <textarea rows={3} className="w-full bg-transparent border-b border-gray-200 py-4 focus:border-primary outline-none transition-all font-serif text-lg resize-none" placeholder="Share your dreams..."></textarea>
+                </div>
+                <div className="space-y-3">
+                  <label className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Preferred Time to Contact</label>
+                  <input type="text" className="w-full bg-transparent border-b border-gray-200 py-4 focus:border-primary outline-none transition-all font-serif text-lg" placeholder="e.g., Afternoon, 6 PM" />
                 </div>
                 <button className="w-full bg-primary text-white py-6 rounded-sm uppercase tracking-[0.4em] font-bold hover:shadow-2xl transition-all duration-500 flex items-center justify-center gap-4 group">
-                  Send Message <ChevronRight size={20} className="group-hover:translate-x-2 transition-transform" />
+                  Book Free Consultation <ChevronRight size={20} className="group-hover:translate-x-2 transition-transform" />
                 </button>
               </form>
             </motion.div>
@@ -604,10 +767,10 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="py-32 px-8 bg-white border-t border-gray-50 relative z-10">
+      <footer className="py-32 px-8 bg-transparent border-t border-primary/5 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col items-center">
           <div className="w-24 h-24 mb-12 flex items-center justify-center transition-transform duration-500 hover:scale-110">
-            <img src="/logo.png" alt="LET US WED Logo" className="w-full h-full object-contain" />
+            <img src="/LUW_Final_Logomark.png" alt="LET US WED Logo" className="w-full h-full object-contain" />
           </div>
           <h2 className="text-4xl font-serif mb-4 tracking-[0.4em]">LET US WED</h2>
           <p className="text-gray-400 italic font-serif mb-16 text-lg">"Where Your Forever Begins, Flawlessly Designed."</p>
@@ -615,8 +778,14 @@ export default function App() {
           <div className="w-full max-w-2xl h-px bg-gray-100 mb-16" />
           
           <div className="flex flex-wrap justify-center gap-12 text-[10px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-16">
-            {["Home", "Philosophy", "Services", "Experience", "Contact"].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-primary transition-colors">{item}</a>
+            {[
+              { name: "Home", href: "#home" },
+              { name: "About Us", href: "#philosophy" },
+              { name: "Services", href: "#services" },
+              { name: "How It Works", href: "#experience" },
+              { name: "Contact", href: "#contact" }
+            ].map((item) => (
+              <a key={item.name} href={item.href} className="hover:text-primary transition-colors">{item.name}</a>
             ))}
           </div>
           
