@@ -72,8 +72,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? "bg-beige/80 backdrop-blur-lg shadow-sm py-3" : "bg-transparent py-8"}`}>
-      <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? "bg-beige/80 backdrop-blur-lg shadow-sm py-3" : "bg-transparent py-4 md:py-8"}`}>
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
         <div className="flex items-center gap-2 md:gap-4 group cursor-pointer">
           <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
             <img src="/logo.png" alt="LET US WED Logo" className="w-full h-full object-contain" />
@@ -139,7 +139,7 @@ const Navbar = () => {
 };
 
 const SectionHeading = ({ title, subtitle, centered = true }: { title: string; subtitle?: string; centered?: boolean }) => (
-  <div className={`${centered ? "text-center" : "text-left"} mb-20`}>
+  <div className={`${centered ? "text-center" : "text-left"} mb-12 md:mb-20`}>
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -147,10 +147,10 @@ const SectionHeading = ({ title, subtitle, centered = true }: { title: string; s
       transition={{ duration: 0.8 }}
     >
       <span className="text-primary text-xs uppercase tracking-[0.5em] font-bold mb-4 block">{subtitle}</span>
-      <h2 className="text-5xl md:text-7xl font-serif text-gray-900 leading-tight">
+      <h2 className="text-4xl md:text-7xl font-serif text-gray-900 leading-tight">
         {title}
       </h2>
-      <div className={`w-20 h-px bg-primary/30 mt-10 ${centered ? "mx-auto" : ""}`} />
+      <div className={`w-16 md:w-20 h-px bg-primary/30 mt-6 md:mt-10 ${centered ? "mx-auto" : ""}`} />
     </motion.div>
   </div>
 );
@@ -170,13 +170,14 @@ const ServiceCard = ({ icon: Icon, title, description, points, index }: ServiceC
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ delay: index * 0.1, duration: 0.8 }}
-    className="group relative bg-white/40 backdrop-blur-sm p-12 rounded-sm border border-white/50 hover:bg-white/80 transition-all duration-700"
+    className="group relative bg-white/40 backdrop-blur-sm p-6 md:p-12 rounded-sm border border-white/50 hover:bg-white/80 transition-all duration-700"
   >
-    <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-      <Icon size={120} />
+    <div className="absolute top-0 right-0 p-4 md:p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+      <Icon size={120} className="hidden md:block" />
+      <Icon size={80} className="md:hidden" />
     </div>
     <div className="relative z-10">
-      <div className="w-12 h-12 bg-primary/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+      <div className="w-12 h-12 bg-primary/5 flex items-center justify-center mb-6 md:mb-8 group-hover:scale-110 transition-transform duration-500">
         <Icon className="text-primary" size={28} />
       </div>
       <h3 className="text-3xl font-serif mb-6 text-gray-900">{title}</h3>
@@ -225,14 +226,14 @@ export default function App() {
         {/* Triple Image Background */}
         <div className="absolute inset-0 z-0 flex">
           {[
-            "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=100&w=1200", // Couple Left
+            "/frame.png", // Frame Image Left
             "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=100&w=1200", // Venue Middle
             "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=100&w=1200"  // Couple Right
           ].map((src, i) => (
             <motion.div 
               key={i}
               style={{ y: i === 1 ? 0 : y1 }}
-              className="flex-1 relative h-full overflow-hidden border-x border-white/10"
+              className={`relative h-full overflow-hidden border-x border-white/10 flex-1 ${i !== 1 ? "hidden md:block" : "block"}`}
             >
               <div className="absolute inset-0 bg-beige/30 z-10 backdrop-blur-[1px]" />
               <img 
@@ -245,14 +246,14 @@ export default function App() {
           ))}
         </div>
 
-        <div className="relative z-20 text-center max-w-6xl px-4">
+        <div className="relative z-20 text-center max-w-6xl px-4 mt-20 md:mt-0">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="mb-10"
+            className="mb-8 md:mb-10"
           >
-            <div className="w-32 h-32 md:w-48 md:h-48 mx-auto flex items-center justify-center relative">
+            <div className="w-24 h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 mx-auto flex items-center justify-center relative">
               <motion.img 
                 src="/LUW_Final_Logomark.png" 
                 alt="LET US WED Symbol" 
@@ -290,7 +291,7 @@ export default function App() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1.2 }}
-            className="text-5xl md:text-8xl lg:text-9xl font-serif text-gray-900 mb-12 tracking-tight leading-[0.95]"
+            className="text-4xl md:text-7xl lg:text-9xl font-serif text-gray-900 mb-8 md:mb-12 tracking-tight leading-[1.1] md:leading-[0.95]"
           >
             Your Big Day Deserves the Right Decisions
           </motion.h1>
@@ -299,7 +300,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 1 }}
-            className="text-xl md:text-2xl text-gray-600 font-light mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-2xl text-gray-600 font-light mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
           >
             From dream venues to perfect vendors — we help you choose what truly fits your wedding story.
           </motion.p>
@@ -331,8 +332,8 @@ export default function App() {
       </section>
 
       {/* Philosophy Section */}
-      <section id="philosophy" className="py-40 px-8 relative z-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+      <section id="philosophy" className="py-20 md:py-40 px-4 md:px-8 relative z-10 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -348,8 +349,8 @@ export default function App() {
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-12 -right-12 w-64 h-64 bg-primary/5 backdrop-blur-xl p-12 flex items-center justify-center rounded-sm border border-white/20">
-              <Heart size={80} className="text-primary/20" fill="currentColor" />
+            <div className="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 w-24 h-24 md:w-32 md:h-32 bg-black flex items-center justify-center rounded-sm shadow-xl z-20">
+              <img src="/LUW_Final_Logomark.png" alt="LUW Logo" className="w-16 h-16 md:w-20 md:h-20 object-contain" />
             </div>
           </motion.div>
 
@@ -378,11 +379,11 @@ export default function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-40 px-8 relative z-10 bg-beige/10">
+      <section id="services" className="py-20 md:py-40 px-4 md:px-8 relative z-10 bg-beige/10">
         <div className="max-w-7xl mx-auto">
           <SectionHeading title="Our Services" subtitle="Simplifying Your Journey" />
           
-          <p className="text-center text-xl text-gray-500 font-light mb-24 max-w-3xl mx-auto">
+          <p className="text-center text-lg md:text-xl text-gray-500 font-light mb-12 md:mb-24 max-w-3xl mx-auto">
             At Let Us Wed, we focus on simplifying your wedding planning journey through expert consultation and curated recommendations.
           </p>
           
@@ -427,17 +428,17 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="bg-primary p-16 rounded-sm shadow-2xl flex flex-col justify-center items-center text-center text-white relative overflow-hidden group"
+              className="bg-primary p-8 md:p-16 rounded-sm shadow-2xl flex flex-col justify-center items-center text-center text-white relative overflow-hidden group"
             >
               <motion.div 
                 animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 3, repeat: Infinity }}
                 className="mb-8"
               >
-                <Heart size={64} fill="currentColor" className="opacity-30" />
+                <img src="/LUW_Final_Logomark.png" alt="LUW Logo" className="w-12 h-12 md:w-16 md:h-16 object-contain opacity-30 grayscale brightness-0 invert" />
               </motion.div>
-              <h3 className="text-4xl font-serif mb-6">And Much More...</h3>
-              <p className="opacity-70 font-light text-lg">Every detail is handled with absolute care and precision.</p>
+              <h3 className="text-3xl md:text-4xl font-serif mb-4 md:mb-6">And Much More...</h3>
+              <p className="opacity-70 font-light text-base md:text-lg">Every detail is handled with absolute care and precision.</p>
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-700" />
             </motion.div>
           </div>
@@ -445,19 +446,19 @@ export default function App() {
       </section>
 
       {/* How It Works Section */}
-      <section id="experience" className="py-40 px-8 relative z-10 overflow-hidden">
+      <section id="experience" className="py-20 md:py-40 px-4 md:px-8 relative z-10 overflow-hidden">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-32">
+          <div className="text-center mb-16 md:mb-32">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-5xl md:text-6xl font-serif text-gold mb-4 tracking-widest uppercase">How Let Us Wed Works</h2>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-gold mb-4 tracking-widest uppercase">How Let Us Wed Works</h2>
               <div className="flex items-center justify-center gap-4">
-                <div className="h-px w-12 bg-gold/30" />
-                <span className="text-xl italic text-gray-500 font-serif">Simple. Structured. Stress-Free.</span>
-                <div className="h-px w-12 bg-gold/30" />
+                <div className="h-px w-8 md:w-12 bg-gold/30" />
+                <span className="text-base md:text-xl italic text-gray-500 font-serif">Simple. Structured. Stress-Free.</span>
+                <div className="h-px w-8 md:w-12 bg-gold/30" />
               </div>
             </motion.div>
           </div>
@@ -479,7 +480,7 @@ export default function App() {
               </svg>
             </div>
 
-            <div className="space-y-32 relative">
+            <div className="space-y-16 md:space-y-32 relative">
               {[
                 {
                   id: 1,
@@ -551,9 +552,9 @@ export default function App() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: 0.1 }}
-                  className={`flex items-center gap-8 md:gap-24 ${item.align === "right" ? "flex-row-reverse" : "flex-row"}`}
+                  className={`flex flex-col md:flex-row items-center justify-center gap-8 md:gap-24 ${item.align === "right" ? "md:flex-row-reverse" : ""}`}
                 >
-                  <div className={`flex-1 flex flex-col ${item.align === "right" ? "items-start text-left" : "items-end text-right"}`}>
+                  <div className={`flex-1 flex flex-col items-center md:items-${item.align === "right" ? "start" : "end"} text-center md:text-${item.align === "right" ? "left" : "right"}`}>
                     <div className="flex items-center gap-4 mb-2">
                       <span className="text-gold font-bold text-lg">{item.id}.</span>
                       <h4 className="text-2xl md:text-3xl font-serif text-gray-900 tracking-wider">{item.title}</h4>
@@ -583,19 +584,19 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-40 text-center"
+            className="mt-20 md:mt-40 text-center"
           >
             <div className="inline-block relative">
-              <h3 className="text-4xl md:text-6xl font-serif text-gold italic">From Enquiry to "I Do"—</h3>
-              <h3 className="text-4xl md:text-6xl font-serif text-gold italic ml-12">We Handle Everything</h3>
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-48 h-px bg-gold/30" />
+              <h3 className="text-3xl md:text-6xl font-serif text-gold italic">From Enquiry to "I Do"—</h3>
+              <h3 className="text-3xl md:text-6xl font-serif text-gold italic md:ml-12 mt-2 md:mt-0">We Handle Everything</h3>
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-32 md:w-48 h-px bg-gold/30" />
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Portfolio Grid */}
-      <section className="py-40 px-8 relative z-10 bg-beige/5">
+      <section className="py-20 md:py-40 px-4 md:px-8 relative z-10 bg-beige/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading title="Glimpses of Forever" subtitle="A Visual Narrative" />
           
@@ -603,10 +604,10 @@ export default function App() {
             {[
               { src: "/gallery-4.png", title: "Glimpses of Perfection", date: "Recent Wedding" },
               { src: "/gallery-3.png", title: "Exquisite Catering", date: "Grand Banquet" },
-              { src: "/gallery-2.png", title: "Royal Stage Design", date: "Reception Decor" },
-              { src: "/gallery-1.png", title: "Magnificent Mandap", date: "Traditional Vows" },
+              { src: "/stage.png", title: "Royal Stage Design", date: "Reception Decor" },
+              { src: "/mandap.png", title: "Magnificent Mandap", date: "Traditional Vows" },
               { src: "/gallery-5.png", title: "Floral Grandeur", date: "Stage Concept" },
-              { src: "/gallery-6.png", title: "Curated Excellence", date: "Unique Concept" }
+              { src: "/unique.png", title: "Curated Excellence", date: "Unique Concept" }
             ].map((item, idx) => (
               <motion.div 
                 key={idx}
@@ -640,7 +641,7 @@ export default function App() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-60 px-8 bg-primary text-white text-center relative z-10 overflow-hidden">
+      <section className="py-32 md:py-60 px-4 md:px-8 bg-primary text-white text-center relative z-10 overflow-hidden">
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -648,7 +649,7 @@ export default function App() {
           transition={{ duration: 1.5 }}
           className="max-w-4xl mx-auto relative z-10"
         >
-          <h2 className="text-6xl md:text-8xl font-serif mb-12 leading-tight">Thoughtfully planned… Beautifully brought to life</h2>
+          <h2 className="text-4xl md:text-6xl lg:text-8xl font-serif mb-8 md:mb-12 leading-tight">Thoughtfully planned… Beautifully brought to life</h2>
           <motion.a 
             href="#contact"
             whileHover={{ scale: 1.05, backgroundColor: "#fff", color: "#c62828" }}
@@ -672,16 +673,16 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-40 px-8 relative z-10">
+      <section id="contact" className="py-20 md:py-40 px-4 md:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32">
             <div>
               <SectionHeading title="Get in Touch" subtitle="Start Your Journey" centered={false} />
-              <p className="text-xl text-gray-500 font-light leading-loose mb-16 italic">
+              <p className="text-lg md:text-xl text-gray-500 font-light leading-loose mb-12 md:mb-16 italic">
                 We would love to hear about your love story and how we can help you design your perfect day. Reach out for a personal consultation.
               </p>
               
-              <div className="space-y-12">
+              <div className="space-y-8 md:space-y-12">
                 {[
                   { icon: Phone, label: "Call Us", value: "7481081074" },
                   { icon: Mail, label: "Email Us", value: "letuswed@gmail.com" },
@@ -693,8 +694,8 @@ export default function App() {
                       <item.icon size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] uppercase tracking-[0.4em] text-primary font-bold mb-2">{item.label}</p>
-                      <p className="text-2xl font-serif text-gray-900">{item.value}</p>
+                      <p className="text-[10px] uppercase tracking-[0.4em] text-primary font-bold mb-1 md:mb-2">{item.label}</p>
+                      <p className="text-xl md:text-2xl font-serif text-gray-900">{item.value}</p>
                     </div>
                   </div>
                 ))}
@@ -706,10 +707,10 @@ export default function App() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="bg-beige/40 backdrop-blur-md p-16 rounded-sm shadow-2xl border border-white/20 relative"
+              className="bg-beige/40 backdrop-blur-md p-6 md:p-16 rounded-sm shadow-2xl border border-white/20 relative"
             >
-              <div className="absolute top-0 right-0 p-8 opacity-5">
-                <Heart size={100} className="text-primary" fill="currentColor" />
+              <div className="absolute top-0 right-0 p-4 md:p-8 opacity-5">
+                <img src="/LUW_Final_Logomark.png" alt="LUW Logo" className="w-24 h-24 object-contain grayscale" />
               </div>
               <form className="space-y-8 relative z-10" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -767,15 +768,15 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="py-32 px-8 bg-transparent border-t border-primary/5 relative z-10">
-        <div className="max-w-7xl mx-auto flex flex-col items-center">
-          <div className="w-24 h-24 mb-12 flex items-center justify-center transition-transform duration-500 hover:scale-110">
+      <footer className="py-16 md:py-32 px-4 md:px-8 bg-transparent border-t border-primary/5 relative z-10">
+        <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
+          <div className="w-20 h-20 md:w-24 md:h-24 mb-8 md:mb-12 flex items-center justify-center transition-transform duration-500 hover:scale-110">
             <img src="/LUW_Final_Logomark.png" alt="LET US WED Logo" className="w-full h-full object-contain" />
           </div>
-          <h2 className="text-4xl font-serif mb-4 tracking-[0.4em]">LET US WED</h2>
-          <p className="text-gray-400 italic font-serif mb-16 text-lg">"Where Your Forever Begins, Flawlessly Designed."</p>
+          <h2 className="text-3xl md:text-4xl font-serif mb-4 tracking-[0.4em]">LET US WED</h2>
+          <p className="text-gray-400 italic font-serif mb-12 md:mb-16 text-base md:text-lg max-w-sm md:max-w-none">"Where Your Forever Begins, Flawlessly Designed."</p>
           
-          <div className="w-full max-w-2xl h-px bg-gray-100 mb-16" />
+          <div className="w-full max-w-2xl h-px bg-gray-100 mb-12 md:mb-16" />
           
           <div className="flex flex-wrap justify-center gap-12 text-[10px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-16">
             {[
