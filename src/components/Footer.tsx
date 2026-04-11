@@ -20,6 +20,10 @@ export const Footer = () => {
         
         <div className="w-full max-w-2xl h-px bg-gray-100 mb-12 md:mb-16" />
         
+        <div className="flex flex-wrap justify-center gap-12 text-[10px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-8">
+          <a href="mailto:Letuswed2026@gmail.com" className="hover:text-primary transition-colors">Letuswed2026@gmail.com</a>
+        </div>
+        
         <div className="flex flex-wrap justify-center gap-12 text-[10px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-16">
           {navLinks.map((item) => (
             <Link key={item.name} to={item.to} className="hover:text-primary transition-colors">{item.name}</Link>
